@@ -12,4 +12,6 @@ public class Clothe {
     private String type;
     private int image;
 
+
+
 }

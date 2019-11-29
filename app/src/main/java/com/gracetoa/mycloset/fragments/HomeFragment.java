@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +26,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private List<Category> categories;
-    private RecyclerView recyclerViewHome;
+    private RecyclerView listCategories;
     private RecyclerView.Adapter homeAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -42,8 +43,8 @@ public class HomeFragment extends Fragment {
 
         categories = new ArrayList<Category>();
 
-        recyclerViewHome = (RecyclerView) view.findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(getContext());
+        listCategories = (RecyclerView) view.findViewById(R.id.recyclerView);
+//        layoutManager = new LinearLayoutManager(getContext());
 
         getCategories();
 
@@ -54,11 +55,16 @@ public class HomeFragment extends Fragment {
                 //Toast.makeText(getActivity(),category.toString(),Toast.LENGTH_LONG).show();
             }
         });
+        listCategories.setAdapter(homeAdapter);
 
-        recyclerViewHome.setHasFixedSize(true);
-        recyclerViewHome.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewHome.setLayoutManager(layoutManager);
-        recyclerViewHome.setAdapter(homeAdapter);
+
+        listCategories.setHasFixedSize(true);
+
+        listCategories.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        listCategories.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+
+
+        listCategories.setItemAnimator(new DefaultItemAnimator());
 
         return view;
     }
