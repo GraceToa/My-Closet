@@ -24,9 +24,9 @@
          android:layout_height="wrap_content"
          android:src="@drawable/ic_action_outfit"
          fab:fab_size="mini"
-         fab:fab_colorNormal="@color/primary_dark"
-         fab:fab_colorPressed="@color/accent"
-         fab:fab_title="+ Outfit" />
+         fab:fab_colorNormal="@color/accent"
+         fab:fab_colorPressed="@color/accent_light"
+        />
 
     <com.getbase.floatingactionbutton.AddFloatingActionButton
         android:id="@+id/fab2"
@@ -34,9 +34,9 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_action_clothes"
         fab:fab_size="mini"
-        fab:fab_colorNormal="@color/primary_dark"
-        fab:fab_colorPressed="@color/accent"
-        fab:fab_title="+Clothe" />
+        fab:fab_colorNormal="@color/accent"
+        fab:fab_colorPressed="@color/accent_light"
+        />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

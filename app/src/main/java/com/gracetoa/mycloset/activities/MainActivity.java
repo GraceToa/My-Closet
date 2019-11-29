@@ -31,18 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
         final FloatingActionButton fab1 = findViewById(R.id.fab1);
         final FloatingActionButton fab2 = findViewById(R.id.fab2);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        TextView customTitleToolbar = toolbar.findViewById(R.id.textTitleToolbar);
-        customTitleToolbar.setText("My Closet");
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        TextView customTitleToolbar = toolbar.findViewById(R.id.textTitleToolbar);
+        setSupportActionBar(toolbar);
+        customTitleToolbar.setText(toolbar.getTitle());
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = findViewById(R.id.viewPager);
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
-
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
