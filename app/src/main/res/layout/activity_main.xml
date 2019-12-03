@@ -5,6 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+
     tools:context=".activities.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,15 +15,17 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <include android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+
+
+        <include android:id="@+id/toolbar_main"
+            layout="@layout/toolbar_main" />
 
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below= "@+id/toolbar"
+            android:layout_below= "@+id/toolbar_main"
             app:tabSelectedTextColor="@color/primary_text"
             app:tabTextColor="@color/white"
             app:tabIndicatorColor="@color/accent"
@@ -59,10 +63,23 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tabLayout"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
-  <include android:id="@+id/menuFab"
-      layout="@layout/floating_action_menu" />
+        android:layout_below="@+id/barLayout"/>
+
+    <io.github.yavski.fabspeeddial.FabSpeedDial
+        android:id="@+id/fabSpeedDial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:fabGravity="bottom_end"
+        app:fabMenu="@menu/menu_main"
+        app:miniFabBackgroundTint="@color/accent"
+        app:miniFabDrawableTint="@color/white"
+        app:miniFabTitleTextColor="@color/black"
+        app:fabDrawableTint="@color/white"
+        app:fabBackgroundTint="@color/accent"
+        />
 
 
 

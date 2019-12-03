@@ -8,14 +8,19 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.realm.Realm;
+import io.realm.RealmList;
+import io.realm.RealmResults;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.gracetoa.mycloset.R;
 import com.gracetoa.mycloset.adapters.HomeAdapter;
 import com.gracetoa.mycloset.models.Category;
+import com.gracetoa.mycloset.models.SubCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,58 +31,107 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private List<Category> categories;
-    private RecyclerView listCategories;
+    private RecyclerView recyclerView;
     private RecyclerView.Adapter homeAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+
+    private Realm realm;
+    private RealmResults<Category> realmResults;
 
     //constructor default
     public HomeFragment() {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Realm.init(getContext());
+        realm = Realm.getDefaultInstance();
+        realmResults = realm.where(Category.class).findAll();
+
+        if (realmResults.size() == 0){
+            createCategory();
+        }
 
         final View view = inflater.inflate(R.layout.fragment_home,container,false);
-
-        categories = new ArrayList<Category>();
-
-        listCategories = (RecyclerView) view.findViewById(R.id.recyclerView);
-//        layoutManager = new LinearLayoutManager(getContext());
-
-        getCategories();
-
-
-        homeAdapter = new HomeAdapter(categories, R.layout.recycler_view_item, new HomeAdapter.OnItemClickListener() {
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        homeAdapter = new HomeAdapter(realmResults, R.layout.recycler_view_item, new HomeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Category category, int position) {
-                //Toast.makeText(getActivity(),category.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),category.toString(),Toast.LENGTH_LONG).show();
             }
         });
-        listCategories.setAdapter(homeAdapter);
-
-
-        listCategories.setHasFixedSize(true);
-
-        listCategories.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        listCategories.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
-
-
-        listCategories.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(homeAdapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.smoothScrollToPosition(0);
 
         return view;
     }
 
-    public  void getCategories(){
-        String[] category = {"Accessories","Coat","Dresses","Shoes","Tops","Trousers"};
-        categories.add(new Category(1,category[0], R.drawable.accessories));
-        categories.add(new Category(2,category[1], R.drawable.coat));
-        categories.add(new Category(3,category[2], R.drawable.dresses));
-        categories.add(new Category(4,category[3], R.drawable.shoes));
-        categories.add(new Category(5,category[4], R.drawable.tops));
-        categories.add(new Category(6,category[5], R.drawable.trousers));
-
+    //*  Realm */
+    private void createCategory(){
+        List<Category> c = getCategories();
+        realm.beginTransaction();
+        realm.copyToRealm(c);
+        realm.commitTransaction();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
+    public  List<Category> getCategories(){
+
+        final RealmList<SubCategory> subCategoriesAccesories = new RealmList<>();
+        subCategoriesAccesories.add(new SubCategory("Glasses",R.mipmap.ic_subcateg_glasses));
+        subCategoriesAccesories.add(new SubCategory("Hats",R.mipmap.ic_subcateg_hat));
+        subCategoriesAccesories.add(new SubCategory("Jewelries",R.mipmap.ic_subcateg_jewelry));
+        subCategoriesAccesories.add(new SubCategory("Watchs",R.mipmap.ic_subcateg_watch));
+
+        final RealmList<SubCategory> subCategoriesCoats = new RealmList<>();
+        subCategoriesCoats.add(new SubCategory("Blazers",R.mipmap.ic_subcateg_blazer));
+        subCategoriesCoats.add(new SubCategory("Jackets",R.mipmap.ic_subcateg_jacket));
+        subCategoriesCoats.add(new SubCategory("Parkas",R.mipmap.ic_subcateg_parka));
+        subCategoriesCoats.add(new SubCategory("Wrap Coat",R.mipmap.ic_subcateg_coat));
+
+        final RealmList<SubCategory> subCategoriesDresses = new RealmList<>();
+        subCategoriesDresses.add(new SubCategory("Skirts",R.mipmap.ic_subcateg_hat));
+        subCategoriesDresses.add(new SubCategory("Shirts Dresses",R.mipmap.ic_subcateg_hat));
+
+        final RealmList<SubCategory> subCategoriesShoes = new RealmList<>();
+        subCategoriesShoes.add(new SubCategory("Boots",R.mipmap.ic_subcateg_hat));
+        subCategoriesShoes.add(new SubCategory("Sandals",R.mipmap.ic_subcateg_hat));
+        subCategoriesShoes.add(new SubCategory("Sneakers",R.mipmap.ic_subcateg_hat));
+        subCategoriesShoes.add(new SubCategory("Stilettos",R.mipmap.ic_subcateg_hat));
+
+        final RealmList<SubCategory> subCategoriesTops = new RealmList<>();
+        subCategoriesTops.add(new SubCategory("Shirts",R.mipmap.ic_subcateg_hat));
+        subCategoriesTops.add(new SubCategory("T-Shirts",R.mipmap.ic_subcateg_hat));
+        subCategoriesTops.add(new SubCategory("Sleeveless",R.mipmap.ic_subcateg_hat));
+        subCategoriesTops.add(new SubCategory("Blouses",R.mipmap.ic_subcateg_hat));
+
+        final RealmList<SubCategory> subCategoriesBottoms = new RealmList<>();
+        subCategoriesBottoms.add(new SubCategory("Jeans",R.mipmap.ic_subcateg_hat));
+        subCategoriesBottoms.add(new SubCategory("Leggings",R.mipmap.ic_subcateg_hat));
+        subCategoriesBottoms.add(new SubCategory("Shorts",R.mipmap.ic_subcateg_hat));
+        subCategoriesBottoms.add(new SubCategory("Skinnies",R.mipmap.ic_subcateg_hat));
+
+        return new ArrayList<Category>(){{
+        add(new Category("Accessories", R.drawable.accessories,subCategoriesAccesories));
+        add(new Category("Coat", R.drawable.coat,subCategoriesCoats));
+        add(new Category("Dresses", R.drawable.dresses,subCategoriesDresses));
+        add(new Category("Shoes", R.drawable.shoes,subCategoriesShoes));
+        add(new Category("Tops", R.drawable.tops,subCategoriesTops));
+        add(new Category("Bottoms", R.drawable.trousers,subCategoriesBottoms));
+        }};
+    }
+
+
 
 }
