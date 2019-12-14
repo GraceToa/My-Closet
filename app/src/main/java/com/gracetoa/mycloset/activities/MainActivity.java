@@ -97,11 +97,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void replaceFragment(){
-        AddEditClotheFragment addEditClotheFragment = new AddEditClotheFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container,addEditClotheFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+  
 }
