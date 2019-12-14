@@ -1,5 +1,7 @@
 package com.gracetoa.mycloset.models;
 
+import com.gracetoa.mycloset.app.ConfigRealm;
+
 import java.util.List;
 
 import io.realm.RealmList;
@@ -13,22 +15,23 @@ import io.realm.annotations.Required;
  */
 public class Category extends RealmObject {
 
+    @PrimaryKey
     private int id;
+    @Required
     private String name;
     private int image;
 
+    private RealmList<SubCategory> subCategories;
+
     public Category(){}
 
-    public Category(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Category(int id, String name,int image) {
-        this.id = id;
+    public Category( String name, int image, RealmList<SubCategory>subCategories) {
+        this.id = ConfigRealm.CategoryID.incrementAndGet();
         this.name = name;
         this.image = image;
+        this.subCategories = subCategories;
     }
+
 
     public int getId() {
         return id;
@@ -38,12 +41,21 @@ public class Category extends RealmObject {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getImage() {
         return image;
     }
 
+    public RealmList<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", image=" + image +
+                ", subCategories=" + subCategories +
+                '}';
+    }
 }

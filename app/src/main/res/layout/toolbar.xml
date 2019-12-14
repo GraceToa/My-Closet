@@ -10,12 +10,5 @@
     android:theme="@style/ThemeOverlay.AppCompat.Light"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <TextView
-        android:id="@+id/textTitleToolbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Closet"
-        android:textColor="@color/black"
-        style="@style/TextToolbarStyle"
-        android:layout_gravity="center"/>
+
 </androidx.appcompat.widget.Toolbar>

@@ -6,12 +6,15 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+import io.github.yavski.fabspeeddial.FabSpeedDial;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.internal.NavigationMenu;
 import com.google.android.material.tabs.TabLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,18 +31,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        final FloatingActionButton fab1 = findViewById(R.id.fab1);
-        final FloatingActionButton fab2 = findViewById(R.id.fab2);
-
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_main);
         TextView customTitleToolbar = toolbar.findViewById(R.id.textTitleToolbar);
         setSupportActionBar(toolbar);
         customTitleToolbar.setText(toolbar.getTitle());
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        getTabLayout(tabLayout);
+
+        FabSpeedDial fabSpeedDial = findViewById(R.id.fabSpeedDial);
+        getFabSpeedDial(fabSpeedDial);
+
+
+    }
+
+    public void getTabLayout(TabLayout tabLayout){
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
         final ViewPager viewPager = findViewById(R.id.viewPager);
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
@@ -63,33 +71,31 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Outfit ADD", Toast.LENGTH_LONG).show();
-
-                startActivity(new Intent(MainActivity.this,AddEditClotheActivity.class));
-            }
-        });
-
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Clothe ADD", Toast.LENGTH_LONG).show();
-            }
-        });
-
     }
 
-    public void replaceFragment(){
-        AddEditClotheFragment addEditClotheFragment = new AddEditClotheFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container,addEditClotheFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+    public void getFabSpeedDial(FabSpeedDial fabSpeedDial){
+        fabSpeedDial.setMenuListener(new FabSpeedDial.MenuListener() {
+            @Override
+            public boolean onPrepareMenu(NavigationMenu navigationMenu) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                if (menuItem.getTitle().equals("Add Outfit")){
+                    startActivity(new Intent(MainActivity.this,AddEditOutfitActivity.class));
+                }else{
+                    startActivity(new Intent(MainActivity.this,AddEditClotheActivity.class));
+                }
+                return true;
+            }
+
+            @Override
+            public void onMenuClosed() {
+
+            }
+        });
     }
+
+  
 }
