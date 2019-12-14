@@ -1,35 +1,36 @@
 package com.gracetoa.mycloset.activities;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.realm.Realm;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenu;
 import com.google.android.material.tabs.TabLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gracetoa.mycloset.R;
 import com.gracetoa.mycloset.adapters.PagerAdapter;
-import com.gracetoa.mycloset.fragments.AddEditClotheFragment;
+import com.gracetoa.mycloset.fragments.ClothesFragment;
+import com.gracetoa.mycloset.models.Clothe;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ClothesFragment.DataListener {
+
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        realm = Realm.getDefaultInstance();
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_main);
         TextView customTitleToolbar = toolbar.findViewById(R.id.textTitleToolbar);
@@ -97,5 +98,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-  
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
+    @Override
+    public void sendData(Clothe clothe) {
+
+        Intent i = new Intent(this,DetailClothesActivity.class);
+        i.putExtra("clotheID", String.valueOf(clothe.getId()));
+        startActivity(i);
+
+
+    }
+
+
 }
+

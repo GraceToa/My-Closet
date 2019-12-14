@@ -1,8 +1,9 @@
 package com.gracetoa.mycloset.adapters;
 
-import com.gracetoa.mycloset.fragments.ClotheFragment;
+
+import com.gracetoa.mycloset.fragments.ClothesFragment;
 import com.gracetoa.mycloset.fragments.HomeFragment;
-import com.gracetoa.mycloset.fragments.OutfitFragment;
+import com.gracetoa.mycloset.fragments.OutfitsFragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,9 +29,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new HomeFragment();
             case 1:
-                return new ClotheFragment();
+                return new ClothesFragment();
             case 2:
-                return new OutfitFragment();
+                return new OutfitsFragment();
             default:
                 return null;
         }
@@ -40,8 +41,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return numberOfTabs;
     }
-
-
 
 
 }

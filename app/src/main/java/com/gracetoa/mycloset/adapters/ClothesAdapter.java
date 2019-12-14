@@ -1,5 +1,6 @@
 package com.gracetoa.mycloset.adapters;
 
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -88,17 +89,17 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
             RealmResults<Category>categoriesParent = null;
             RealmResults<SubCategory>subCategParent = null;
 
-                subCategParent = clothes.getSubCategoryParent();
+            subCategParent = clothes.getSubCategoryParent();
 
-                for (SubCategory sb: subCategParent
+            for (SubCategory sb: subCategParent
+            ) {
+                subcategoyName.setText(sb.getName());
+                sb.getCategoriesParent();
+                for (Category cat: sb.getCategoriesParent()
                 ) {
-                    subcategoyName.setText(sb.getName());
-                    sb.getCategoriesParent();
-                    for (Category cat: sb.getCategoriesParent()
-                         ) {
-                        categoryName.setText(cat.getName());
-                    }
+                    categoryName.setText(cat.getName());
                 }
+            }
 
 
             colorClothe.setText(String.valueOf(clothes.getId()));

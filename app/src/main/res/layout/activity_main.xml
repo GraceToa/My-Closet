@@ -61,11 +61,11 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="376dp"
+        android:layout_height="631dp"
+        android:layout_below="@+id/barLayout"
 
-        android:layout_below="@+id/barLayout"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <io.github.yavski.fabspeeddial.FabSpeedDial
         android:id="@+id/fabSpeedDial"

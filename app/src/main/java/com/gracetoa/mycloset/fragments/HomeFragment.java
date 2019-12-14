@@ -1,6 +1,7 @@
 package com.gracetoa.mycloset.fragments;
 
 
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -41,12 +42,12 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Realm.init(getContext());
+
+        final View view = inflater.inflate(R.layout.fragment_home,container,false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_home);
         realm = Realm.getDefaultInstance();
         realmResults = realm.where(Category.class).findAll();
 
@@ -54,9 +55,7 @@ public class HomeFragment extends Fragment {
             createCategory();
         }
 
-        final View view = inflater.inflate(R.layout.fragment_home,container,false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        homeAdapter = new HomeAdapter(realmResults, R.layout.recycler_view_item, new HomeAdapter.OnItemClickListener() {
+        homeAdapter = new HomeAdapter(realmResults, R.layout.card_view_item_home, new HomeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Category category, int position) {
                 Toast.makeText(getContext(),category.toString(),Toast.LENGTH_LONG).show();
@@ -90,7 +89,7 @@ public class HomeFragment extends Fragment {
 
         final RealmList<SubCategory> subCategoriesAccesories = new RealmList<>();
         subCategoriesAccesories.add(new SubCategory("Glasses",R.mipmap.ic_subcateg_glasses));
-        subCategoriesAccesories.add(new SubCategory("Hats",R.mipmap.ic_subcateg_hat));
+        subCategoriesAccesories.add(new SubCategory("Bags",R.mipmap.ic_subcateg_bag));
         subCategoriesAccesories.add(new SubCategory("Jewelries",R.mipmap.ic_subcateg_jewelry));
         subCategoriesAccesories.add(new SubCategory("Watchs",R.mipmap.ic_subcateg_watch));
 
@@ -101,34 +100,32 @@ public class HomeFragment extends Fragment {
         subCategoriesCoats.add(new SubCategory("Wrap Coat",R.mipmap.ic_subcateg_coat));
 
         final RealmList<SubCategory> subCategoriesDresses = new RealmList<>();
-        subCategoriesDresses.add(new SubCategory("Skirts",R.mipmap.ic_subcateg_hat));
-        subCategoriesDresses.add(new SubCategory("Shirts Dresses",R.mipmap.ic_subcateg_hat));
+        subCategoriesDresses.add(new SubCategory("Skirts",R.mipmap.ic_subcateg_skirt));
+        subCategoriesDresses.add(new SubCategory("Shirts Dresses",R.mipmap.ic_subcateg_dress));
 
         final RealmList<SubCategory> subCategoriesShoes = new RealmList<>();
-        subCategoriesShoes.add(new SubCategory("Boots",R.mipmap.ic_subcateg_hat));
-        subCategoriesShoes.add(new SubCategory("Sandals",R.mipmap.ic_subcateg_hat));
-        subCategoriesShoes.add(new SubCategory("Sneakers",R.mipmap.ic_subcateg_hat));
-        subCategoriesShoes.add(new SubCategory("Stilettos",R.mipmap.ic_subcateg_hat));
+        subCategoriesShoes.add(new SubCategory("Boots",R.mipmap.ic_subcateg_boot));
+        subCategoriesShoes.add(new SubCategory("Sandals",R.mipmap.ic_subcateg_sandals));
+        subCategoriesShoes.add(new SubCategory("Sneakers",R.mipmap.ic_subcateg_sneakers));
+        subCategoriesShoes.add(new SubCategory("Stilettos",R.mipmap.ic_subcateg_stiletto));
 
         final RealmList<SubCategory> subCategoriesTops = new RealmList<>();
-        subCategoriesTops.add(new SubCategory("Shirts",R.mipmap.ic_subcateg_hat));
-        subCategoriesTops.add(new SubCategory("T-Shirts",R.mipmap.ic_subcateg_hat));
-        subCategoriesTops.add(new SubCategory("Sleeveless",R.mipmap.ic_subcateg_hat));
-        subCategoriesTops.add(new SubCategory("Blouses",R.mipmap.ic_subcateg_hat));
+        subCategoriesTops.add(new SubCategory("Shirts",R.mipmap.ic_subcateg_shirt));
+        subCategoriesTops.add(new SubCategory("T-Shirts",R.mipmap.ic_subcateg_tshirt));
+        subCategoriesTops.add(new SubCategory("Blouses",R.mipmap.ic_subcateg_blouse));
 
         final RealmList<SubCategory> subCategoriesBottoms = new RealmList<>();
-        subCategoriesBottoms.add(new SubCategory("Jeans",R.mipmap.ic_subcateg_hat));
-        subCategoriesBottoms.add(new SubCategory("Leggings",R.mipmap.ic_subcateg_hat));
-        subCategoriesBottoms.add(new SubCategory("Shorts",R.mipmap.ic_subcateg_hat));
-        subCategoriesBottoms.add(new SubCategory("Skinnies",R.mipmap.ic_subcateg_hat));
+        subCategoriesBottoms.add(new SubCategory("Jeans",R.mipmap.ic_subcateg_jeans));
+        subCategoriesBottoms.add(new SubCategory("Leggings",R.mipmap.ic_subcateg_leggings));
+        subCategoriesBottoms.add(new SubCategory("Shorts",R.mipmap.ic_subcateg_short));
 
         return new ArrayList<Category>(){{
-        add(new Category("Accessories", R.drawable.accessories,subCategoriesAccesories));
-        add(new Category("Coat", R.drawable.coat,subCategoriesCoats));
-        add(new Category("Dresses", R.drawable.dresses,subCategoriesDresses));
-        add(new Category("Shoes", R.drawable.shoes,subCategoriesShoes));
-        add(new Category("Tops", R.drawable.tops,subCategoriesTops));
-        add(new Category("Bottoms", R.drawable.trousers,subCategoriesBottoms));
+            add(new Category("Accessories", R.drawable.accessories,subCategoriesAccesories));
+            add(new Category("Coat", R.drawable.coat,subCategoriesCoats));
+            add(new Category("Dresses", R.drawable.dresses,subCategoriesDresses));
+            add(new Category("Shoes", R.drawable.shoes,subCategoriesShoes));
+            add(new Category("Tops", R.drawable.tops,subCategoriesTops));
+            add(new Category("Bottoms", R.drawable.trousers,subCategoriesBottoms));
         }};
     }
 

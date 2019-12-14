@@ -1,8 +1,11 @@
 package com.gracetoa.mycloset.app;
 
+
 import android.app.Application;
 
 import com.gracetoa.mycloset.models.Category;
+import com.gracetoa.mycloset.models.Clothe;
+import com.gracetoa.mycloset.models.ColorName;
 import com.gracetoa.mycloset.models.SubCategory;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,18 +23,24 @@ public class ConfigRealm extends Application {
 
     public static AtomicInteger CategoryID = new AtomicInteger();
     public static AtomicInteger SubCategoryID = new AtomicInteger();
+    public static AtomicInteger ClotheID = new AtomicInteger();
+    public static AtomicInteger ColorNameID = new AtomicInteger();
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-//        Realm.init(this);
+        Realm.init(getApplicationContext());
         setUpRealmConfig();
 
         Realm realm = Realm.getDefaultInstance();
         CategoryID = getIdByTable(realm, Category.class);
         SubCategoryID = getIdByTable(realm, SubCategory.class);
+        ClotheID = getIdByTable(realm, Clothe.class);
+        ColorNameID = getIdByTable(realm, ColorName.class);
         realm.close();
+
+
     }
 
 

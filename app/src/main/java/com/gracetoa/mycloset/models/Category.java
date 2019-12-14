@@ -1,7 +1,9 @@
 package com.gracetoa.mycloset.models;
 
+
 import com.gracetoa.mycloset.app.ConfigRealm;
 
+import java.io.Serializable;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -13,7 +15,7 @@ import io.realm.annotations.Required;
  * Project My Closet.
  * Created by gracetoa on 2019-11-16.
  */
-public class Category extends RealmObject {
+public class Category extends RealmObject implements Serializable {
 
     @PrimaryKey
     private int id;

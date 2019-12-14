@@ -22,6 +22,6 @@
         android:layout_marginLeft="35dp"
         android:gravity="center"
         android:paddingLeft="20dp"
-       android:textSize="14dp"/>
+        android:textSize="14dp"/>
 
 </RelativeLayout>

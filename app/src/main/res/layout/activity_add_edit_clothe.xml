@@ -1,53 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".activities.AddEditClotheActivity">
 
     <include android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <ImageView
-        android:id="@+id/imageView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="268dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        app:srcCompat="@drawable/dresses" />
+        android:layout_marginTop="0dp"
+        >
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_photo_clothe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="right"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
-        app:backgroundTint="@color/accent"
-        android:onClick="onclick"
-        android:src="@drawable/ic_photo_camera_white"/>
+        <ImageView
+            android:id="@+id/imageViewClothe"
+            android:layout_width="match_parent"
+            android:layout_height="298dp"
+            android:foregroundGravity="top|center_horizontal"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/dresses" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="350dp"
-        android:paddingLeft="30dp"
-        android:textSize="14dp"
-        android:text="Choosse Category"/>
-
-    <Spinner
-        android:id="@+id/spinner_categories"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_marginTop="365dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_photo_clothe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="250dp"
+            android:layout_marginEnd="33dp"
+            android:layout_marginRight="30dp"
+            app:backgroundTint="@color/accent"
+            android:onClick="onclick"
+            android:src="@drawable/ic_photo_camera_white"/>
 
 
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/imageViewClothe"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="80"
+                android:textSize="22dp"
+                android:textColor="@color/primary_dark"
+                android:fontFamily="@font/dancing_script_regular"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@drawable/design_textview"
+                android:padding="5dp"
+                android:text="Touch to choose the color"/>
+
+            <TextView
+                android:id="@+id/textViewPixelColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:textSize="22dp"
+                android:padding="5dp"
+                android:background="@drawable/design_textview"
+
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/texViewChooseColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:textSize="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/linearLayout"
+            android:fontFamily="@font/dancing_script_regular"
+            android:textColor="@color/primary_dark"
+            android:text="Choosse Category"/>
+
+        <Spinner
+            android:id="@+id/spinner_categories"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_below="@+id/texViewChooseColor"/>
+
+    </RelativeLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -18,25 +18,25 @@
         android:layout_margin="@dimen/fab_labels_margin"
         app:fab_labelStyle="@style/label">
 
-     <com.getbase.floatingactionbutton.AddFloatingActionButton
-         android:id="@+id/fab1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:src="@drawable/ic_action_outfit"
-         fab:fab_size="mini"
-         fab:fab_colorNormal="@color/accent"
-         fab:fab_colorPressed="@color/accent_light"
-        />
+        <com.getbase.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_outfit"
+            fab:fab_size="mini"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/accent_light"
+            />
 
-    <com.getbase.floatingactionbutton.AddFloatingActionButton
-        android:id="@+id/fab2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_clothes"
-        fab:fab_size="mini"
-        fab:fab_colorNormal="@color/accent"
-        fab:fab_colorPressed="@color/accent_light"
-        />
+        <com.getbase.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_clothes"
+            fab:fab_size="mini"
+            fab:fab_colorNormal="@color/accent"
+            fab:fab_colorPressed="@color/accent_light"
+            />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
