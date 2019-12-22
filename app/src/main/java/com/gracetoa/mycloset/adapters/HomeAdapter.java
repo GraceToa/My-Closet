@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gracetoa.mycloset.R;
 import com.gracetoa.mycloset.models.Category;
@@ -58,18 +57,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     public  class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView textVieTitle;
-        public ImageView imageViewPoster;
+        public TextView titleCateg;
+        public ImageView imageCateg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textVieTitle = (TextView) itemView.findViewById(R.id.textViewTitle);
-            imageViewPoster = (ImageView)itemView.findViewById(R.id.imageViewPoster);
+            titleCateg = (TextView) itemView.findViewById(R.id.title_categ);
+            imageCateg = (ImageView)itemView.findViewById(R.id.image_categ);
         }
 
         public void bind (final Category category, final  OnItemClickListener onItemClickListener){
-            textVieTitle.setText(category.getName());
-            Picasso.get().load(category.getImage()).fit().into(imageViewPoster);
+            titleCateg.setText(category.getName());
+            Picasso.get().load(category.getImage()).fit().into(imageCateg);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

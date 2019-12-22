@@ -14,13 +14,13 @@
     >
 
     <ImageView
-        android:id="@+id/imageViewPoster"
+        android:id="@+id/image_categ"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/title_categ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"

@@ -1,12 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_outfit"
-        android:icon="@drawable/ic_action_outfit"
-        android:title="Add Outfit" />
 
     <item
-        android:id="@+id/action_clothe"
-        android:icon="@drawable/ic_action_clothes"
-        android:title="Add Clothe" />
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_more_vert_black_24dp"
+        android:title=""
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/delete_clothes"
+                android:icon="@drawable/ic_delete"
+                android:title="All Clothes"/>
+        </menu>
+    </item>
 </menu>

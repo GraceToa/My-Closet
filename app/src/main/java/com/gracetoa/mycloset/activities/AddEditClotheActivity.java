@@ -6,7 +6,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -72,7 +71,6 @@ public class AddEditClotheActivity extends AppCompatActivity  {
     private Spinner spinner;
     private FloatingActionButton fabAddPicture;
     private TextView textViewPixelColor;
-    private Toolbar toolbar;
     private String path ;
     private Bitmap bitmap;
     private ImageView image;
@@ -87,10 +85,11 @@ public class AddEditClotheActivity extends AppCompatActivity  {
         fabAddPicture = findViewById(R.id.fab_add_photo_clothe);
         image = findViewById(R.id.imageViewClothe);
         textViewPixelColor = findViewById(R.id.textViewPixelColor);
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_activities);
 
-        TextView customTitleToolbar = toolbar.findViewById(R.id.textTitleToolbar);
+        TextView customTitleToolbar = toolbar.findViewById(R.id.title_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("My Clothes");
         customTitleToolbar.setText(toolbar.getTitle());
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -126,11 +125,9 @@ public class AddEditClotheActivity extends AppCompatActivity  {
                     g = Color.green(pixel);
                     b = Color.blue(pixel);
                     textViewPixelColor.setBackgroundColor(Color.rgb(r,g,b));
-//                    textViewPixelColor.setText("R("+r+")"+"G("+g+")"+"B("+b+")");
-
                     ColorUtils colorUtils = new ColorUtils();
                     String nameColor = colorUtils.getColorNameFromRgb(r,g,b);
-                    Toast.makeText(AddEditClotheActivity.this,nameColor,Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddEditClotheActivity.this,nameColor,Toast.LENGTH_SHORT).show();
 
                     colorName = new ColorName(nameColor,r,g,b);
                 }
@@ -167,13 +164,13 @@ public class AddEditClotheActivity extends AppCompatActivity  {
             case R.id.save:
                 if(image.getDrawable().getConstantState().equals
                         (getResources().getDrawable(R.drawable.dresses).getConstantState()) && colorName == null){
-                    Toast.makeText(this,"Please, Choose a Color and picture",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Please, Choose a Color and picture",Toast.LENGTH_SHORT).show();
                 }
                 else if(colorName == null){
                     textViewPixelColor.setError("Enter a color");
                 }else if(image.getDrawable().getConstantState().equals
                         (getResources().getDrawable(R.drawable.dresses).getConstantState())){
-                    Toast.makeText(this,"Please, Choose a Color and picture",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Please, Choose a Color and picture",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     saveImageFromGalleyOrCameraToExternalStorage(bitmap);

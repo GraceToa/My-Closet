@@ -6,12 +6,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 import com.google.android.material.internal.NavigationMenu;
 import com.google.android.material.tabs.TabLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -108,12 +110,33 @@ public class MainActivity extends AppCompatActivity implements ClothesFragment.D
     public void sendData(Clothe clothe) {
 
         Intent i = new Intent(this,DetailClothesActivity.class);
-        i.putExtra("clotheID", String.valueOf(clothe.getId()));
+        i.putExtra("id", clothe.getId());
         startActivity(i);
 
 
     }
 
+    /* Events */
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.delete_clothes:
+                RealmResults<Clothe> results = realm.where(Clothe.class).findAll();
+                realm.beginTransaction();
+                results.deleteAllFromRealm();
+                realm.commitTransaction();
+                return true;
+             default:
+                 return  super.onOptionsItemSelected(item);
+        }
+    }
 }
 

@@ -2,6 +2,7 @@ package com.gracetoa.mycloset.fragments;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,9 +17,9 @@ import io.realm.RealmResults;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.gracetoa.mycloset.R;
+import com.gracetoa.mycloset.activities.CategoriesActivity;
 import com.gracetoa.mycloset.adapters.HomeAdapter;
 import com.gracetoa.mycloset.models.Category;
 import com.gracetoa.mycloset.models.SubCategory;
@@ -46,8 +47,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View view = inflater.inflate(R.layout.fragment_home,container,false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_home);
+        final View view = inflater.inflate(R.layout.fragment_tabs,container,false);
+        recyclerView = view.findViewById(R.id.recycler_view);
         realm = Realm.getDefaultInstance();
         realmResults = realm.where(Category.class).findAll();
 
@@ -58,9 +59,14 @@ public class HomeFragment extends Fragment {
         homeAdapter = new HomeAdapter(realmResults, R.layout.card_view_item_home, new HomeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Category category, int position) {
-                Toast.makeText(getContext(),category.toString(),Toast.LENGTH_LONG).show();
+
+
+                Intent intent = new Intent(getActivity(), CategoriesActivity.class);
+                intent.putExtra("id", category.getId());
+                startActivity(intent);
             }
         });
+
         recyclerView.setAdapter(homeAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));

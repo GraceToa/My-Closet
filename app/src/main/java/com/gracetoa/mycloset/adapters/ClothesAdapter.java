@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,8 +35,6 @@ import io.realm.RealmResults;
 public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHolder> {
 
     private List<Clothe>clothesList;
-    private List<Category>categories;
-    private RealmList<SubCategory>subCategories;
     private int layout;
     private OnItemClickListener itemClickListener;
     private Context context;
@@ -74,7 +73,6 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
         public TextView categoryName;
         public TextView colorClothe;
         public ImageView imageView;
-        public ImageView iconview;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,7 +84,6 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ViewHold
 
         public void bind (final Clothe clothes, final ClothesAdapter.OnItemClickListener onItemClickListener){
 
-            RealmResults<Category>categoriesParent = null;
             RealmResults<SubCategory>subCategParent = null;
 
             subCategParent = clothes.getSubCategoryParent();

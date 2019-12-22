@@ -2,7 +2,7 @@
 <androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar"
+    android:id="@+id/toolbar_activities"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/primary"
@@ -12,10 +12,9 @@
     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <TextView
-        android:id="@+id/textTitleToolbar"
+        android:id="@+id/title_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Clothes"
         android:textColor="@color/black"
         style="@style/TextToolbarStyle"
         android:layout_gravity="center"/>

@@ -1,19 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/accent"
-
+    android:padding="20dp"
     tools:context=".activities.DetailClothesActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textClote"
+    <ImageView
+        android:id="@+id/image_clothes_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dresses"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="270dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name_categ_detail_clothes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/name_subcateg_detail_clothes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/primary_text"
+            android:fontFamily="@font/dancing_script_bold"
+            android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/color_name_detail_clothes"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/dancing_script_regular"
+                    android:layout_weight="8"
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/color_circle"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/circle" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_detail_cothes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="Delete"
+        app:backgroundTint="@color/accent"
+        android:foregroundGravity="bottom"
+        android:layout_gravity="end|bottom"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

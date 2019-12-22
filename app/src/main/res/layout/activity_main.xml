@@ -59,7 +59,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="631dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/barLayout"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         app:fabGravity="bottom_end"
-        app:fabMenu="@menu/menu_main"
+        app:fabMenu="@menu/menu_main_fab"
         app:miniFabBackgroundTint="@color/accent"
         app:miniFabDrawableTint="@color/white"
         app:miniFabTitleTextColor="@color/black"

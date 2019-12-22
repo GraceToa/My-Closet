@@ -5,11 +5,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -18,11 +16,9 @@ import io.realm.RealmResults;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.gracetoa.mycloset.R;
 import com.gracetoa.mycloset.adapters.ClothesAdapter;
-import com.gracetoa.mycloset.models.Category;
 import com.gracetoa.mycloset.models.Clothe;
 
 /**
@@ -30,12 +26,9 @@ import com.gracetoa.mycloset.models.Clothe;
  */
 public class ClothesFragment extends Fragment {
 
-    private RecyclerView recyclerView;
     private RecyclerView.Adapter clothesAdapter;
-
     private Realm realm;
     private RealmResults<Clothe> clotheRealmResults;
-
     private DataListener callback;
 
     public ClothesFragment() {
@@ -46,8 +39,8 @@ public class ClothesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_clothe, container, false);
-        recyclerView = view.findViewById(R.id.recycler_view_clothes);
+        View view = inflater.inflate(R.layout.fragment_tabs, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 
         realm = Realm.getDefaultInstance();
         clotheRealmResults = realm.where(Clothe.class).findAllAsync();
@@ -92,4 +85,7 @@ public class ClothesFragment extends Fragment {
             throw  new ClassCastException("Error in retrieving data. Please try again");
         }
     }
+
+    /* Events */
+
 }
